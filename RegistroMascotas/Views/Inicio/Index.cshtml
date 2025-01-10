@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<RegistroMascotas.Models.Contacto>
 @{
-    ViewData["Title"] = "Lista de Contactos";
+    ViewData["Title"] = "Lista de Mascotas";
 }
 
-<h1 class="text-center">Contacto con .NET 8 (.NET Core MVC)</h1>
+<h1 class="text-center">Mascotas con .NET 8 (.NET Core MVC)</h1>
 <div class="row">
     <div class="offset-9 col-3 mb-3">
         <a asp-action="Crear" asp-controller="Inicio" class="btn btn-secondary d-block mx-auto btn-lg">
@@ -44,7 +44,7 @@
                                         <td>
                                             <a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
                                             <a class="btn btn-secondary" asp-action="Detalle" asp-route-id="@item.Id"><i class="fa fa-info-circle" aria-hidden="true"></i> Detalle</a>
-                                            <a class="btn btn-danger" asp-action="Borrar" asp-route-id="@item.Id"><i class="fa fa-eraser" aria-hidden="true"></i> Borrar</a>
+                                            <a class="btn btn-danger" asp-action="Eliminar" asp-route-id="@item.Id"><i class="fa fa-eraser" aria-hidden="true"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 }

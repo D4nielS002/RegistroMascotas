@@ -1,0 +1,56 @@
+﻿@model RegistroMascotas.Models.Contacto
+
+@{
+    ViewData["Title"] = "Eliminar Contacto";
+}
+
+<h1 class="text-center">Eliminar Contacto</h1>
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card border-dark shadow">
+            <div class="card-header bg-dark">
+                <h3 class="text-white text-center"><strong>Confirmar Eliminación</strong></h3>
+            </div>
+            <div class="card-body">
+                <p class="text-center fw-bold">¿Estás seguro de que deseas eliminar este contacto?</p>
+                <dl class="row">
+                    <dt class="col-sm-4 text-dark">Nombre:</dt>
+                    <dd class="col-sm-8">@Model.Nombre</dd>
+
+                    <dt class="col-sm-4 text-dark">Raza:</dt>
+                    <dd class="col-sm-8">@Model.Raza</dd>
+
+                    <dt class="col-sm-4 text-dark">Peso:</dt>
+                    <dd class="col-sm-8">@Model.Peso kg</dd>
+
+                    <dt class="col-sm-4 text-dark">Fecha de Registro:</dt>
+                    <dd class="col-sm-8">@Model.FechaRegistro.ToShortDateString()</dd>
+                </dl>
+
+                <form asp-action="Eliminar" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-danger btn-lg me-3">
+                            <i class="fa fa-trash" aria-hidden="true"></i> Confirmar Eliminación
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary btn-lg">
+                            <i class="fa fa-times" aria-hidden="true"></i> Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Alerta adicional para confirmar la eliminación
+        document.querySelector('form').addEventListener('submit', function (e) {
+            if (!confirm('¿Estás seguro de que deseas eliminar este contacto?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+}

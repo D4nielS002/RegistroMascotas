@@ -8,5 +8,6 @@ namespace RegistroMascotas.Datos
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { 
         }
         public DbSet<Contacto> Contactos { get; set; }
+        public DbSet<Usuario> Usuarios{ get; set; }
     }
 }
