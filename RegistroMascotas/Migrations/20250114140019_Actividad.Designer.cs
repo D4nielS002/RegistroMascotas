@@ -12,8 +12,8 @@ using RegistroMascotas.Datos;
 namespace RegistroMascotas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250109142439_AgregarTablaUsuarios")]
-    partial class AgregarTablaUsuarios
+    [Migration("20250114140019_Actividad")]
+    partial class Actividad
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,36 @@ namespace RegistroMascotas.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("RegistroMascotas.Models.Actividad", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<int>("ContactoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("observacion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("tipoActividad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ContactoId");
+
+                    b.ToTable("Actividad");
+                });
 
             modelBuilder.Entity("RegistroMascotas.Models.Contacto", b =>
                 {
@@ -75,6 +105,17 @@ namespace RegistroMascotas.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("RegistroMascotas.Models.Actividad", b =>
+                {
+                    b.HasOne("RegistroMascotas.Models.Contacto", "Contacto")
+                        .WithMany()
+                        .HasForeignKey("ContactoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Contacto");
                 });
 #pragma warning restore 612, 618
         }
