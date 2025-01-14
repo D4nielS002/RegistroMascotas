@@ -105,6 +105,8 @@ namespace RegistroMascotas.Controllers
 
             return RedirectToAction(nameof(Index)); // Redirige a la lista de contactos
         }
+
+
         [HttpGet]
         public IActionResult Login()
         {
